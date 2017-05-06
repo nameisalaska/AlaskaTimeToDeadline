@@ -13,16 +13,12 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<Pane xmlns:fx="http://javafx.com/fxml/1" fx:id="pane" minHeight="-Infinity" minWidth="-Infinity" prefHeight="404.0"
-      prefWidth="661.0" xmlns="http://javafx.com/javafx/8.0.65" fx:controller="sample.MainController">
+<Pane fx:id="pane" minHeight="-Infinity" minWidth="-Infinity" prefHeight="404.0" prefWidth="661.0" xmlns="http://javafx.com/javafx/8.0.65" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.MainController">
    <children>
-       <ComboBox fx:id="combobox" layoutX="-1.0" layoutY="108.0" opacity="0.95" prefHeight="36.0" prefWidth="174.0"
-                 promptText="Time Zone" visibleRowCount="1000"/>
-       <Button fx:id="buttonOk" layoutX="173.0" layoutY="108.0" mnemonicParsing="false"
-               onMouseClicked="#addSelectedTimeZone" prefHeight="36.0" prefWidth="42.0" text="OK"/>
-       <Button fx:id="buttonOpenClock" disable="true" layoutX="431.0" layoutY="325.0" mnemonicParsing="false"
-               onMouseClicked="#openClock" prefHeight="36.0" prefWidth="208.0" text="Open Clock Widget"/>
-       <VBox layoutX="227.0" layoutY="27.0" prefHeight="171.0" prefWidth="150.0">
+       <ComboBox fx:id="combobox" layoutX="-1.0" layoutY="108.0" opacity="0.95" prefHeight="36.0" prefWidth="174.0" promptText="Time Zone" visibleRowCount="1000" />
+       <Button fx:id="buttonOk" layoutX="173.0" layoutY="108.0" mnemonicParsing="false" onMouseClicked="#addSelectedTimeZone" prefHeight="36.0" prefWidth="42.0" text="OK" />
+       <Button fx:id="buttonOpenClock" disable="true" layoutX="431.0" layoutY="325.0" mnemonicParsing="false" onMouseClicked="#OpenClockWidjet" prefHeight="36.0" prefWidth="208.0" text="Open Clock Widget" />
+       <VBox layoutX="227.0" layoutY="27.0" prefHeight="357.0" prefWidth="150.0">
          <children>
             <Label prefHeight="37.0" prefWidth="150.0" text=" Selected clocks :" />
             <Label fx:id="clock1" prefHeight="24.0" prefWidth="150.0" />
@@ -30,52 +26,50 @@
             <Label fx:id="clock3" prefHeight="26.0" prefWidth="150.0" />
             <Label fx:id="clock4" prefHeight="26.0" prefWidth="150.0" />
             <Label fx:id="clock5" prefHeight="28.0" prefWidth="155.0" />
+            <Label fx:id="clock6" prefHeight="28.0" prefWidth="155.0" />
+            <Label fx:id="clock7" prefHeight="28.0" prefWidth="155.0" />
+            <Label fx:id="clock8" prefHeight="28.0" prefWidth="155.0" />
          </children>
       </VBox>
-       <Label alignment="CENTER" layoutX="29.0" layoutY="56.0" prefHeight="37.0" prefWidth="192.0"
-              text="Select Time Zone"/>
+       <Label alignment="CENTER" layoutX="29.0" layoutY="56.0" prefHeight="37.0" prefWidth="192.0" text="Select Time Zone" />
        <Label fx:id="labelTime" layoutX="451.0" layoutY="246.0" prefHeight="66.0" prefWidth="192.0">
          <font>
             <Font size="43.0" />
          </font>
       </Label>
-       <Label alignment="CENTER" layoutX="-25.0" layoutY="191.0" prefHeight="36.0" prefWidth="192.0"
-              text="Delete Time Zone"/>
-       <ComboBox fx:id="comboboxdelete" layoutY="234.0" opacity="0.95" prefHeight="37.0" prefWidth="174.0"
-                 promptText="Time Zone" visibleRowCount="1000"/>
-       <Button fx:id="buttonOkDelete" layoutX="174.0" layoutY="234.0" mnemonicParsing="false"
-               onMouseClicked="#deleteSelectedTimeZone" prefHeight="37.0" prefWidth="42.0" text="OK"/>
+       <Label alignment="CENTER" layoutX="-25.0" layoutY="191.0" prefHeight="36.0" prefWidth="192.0" text="Delete Time Zone" />
+       <ComboBox fx:id="comboboxDelete" layoutY="234.0" opacity="0.95" prefHeight="37.0" prefWidth="174.0" promptText="Time Zone" visibleRowCount="1000" />
+       <Button fx:id="buttonOkDelete" layoutX="174.0" layoutY="234.0" mnemonicParsing="false" onMouseClicked="#deleteSelectedTimeZone" prefHeight="37.0" prefWidth="42.0" text="OK" />
        <MenuBar maxWidth="1.7976931348623157E308" prefHeight="25.0" prefWidth="661.0">
            <menus>
                <Menu mnemonicParsing="false" text="File">
                    <items>
-                       <MenuItem mnemonicParsing="false" text="Close"/>
+                       <MenuItem mnemonicParsing="false" text="Close" />
                    </items>
                </Menu>
                <Menu mnemonicParsing="false" text="Edit">
                    <items>
-                       <MenuItem mnemonicParsing="false" text="Delete"/>
+                       <MenuItem mnemonicParsing="false" text="Delete" />
                    </items>
                </Menu>
                <Menu mnemonicParsing="false" text="Help">
                    <items>
-                       <MenuItem mnemonicParsing="false" text="About"/>
+                       <MenuItem mnemonicParsing="false" text="About" />
                    </items>
                </Menu>
            </menus>
        </MenuBar>
-       <Separator layoutY="172.0" prefHeight="7.0" prefWidth="225.0"/>
-       <Separator layoutX="418.0" layoutY="27.0" orientation="VERTICAL" prefHeight="378.0" prefWidth="1.0"/>
-       <Separator layoutX="224.0" layoutY="27.0" orientation="VERTICAL" prefHeight="378.0" prefWidth="1.0"/>
-       <ImageView fx:id="mapIcon" fitHeight="57.0" fitWidth="65.0" layoutX="10.0" layoutY="47.0"
-                  onMouseClicked="#clickOnGeoButton">
+       <Separator layoutY="172.0" prefHeight="7.0" prefWidth="225.0" />
+       <Separator layoutX="418.0" layoutY="27.0" orientation="VERTICAL" prefHeight="378.0" prefWidth="1.0" />
+       <Separator layoutX="224.0" layoutY="27.0" orientation="VERTICAL" prefHeight="378.0" prefWidth="1.0" />
+       <ImageView fx:id="mapIcon" fitHeight="57.0" fitWidth="65.0" layoutX="10.0" layoutY="47.0" onMouseClicked="#clickOnGeoButton">
            <image>
-               <Image url="@images/mapIcon.png"/>
+               <Image url="@images/mapIcon.png" />
            </image>
        </ImageView>
        <ImageView fitHeight="205.0" fitWidth="208.0" layoutX="435.0" layoutY="29.0">
            <image>
-               <Image url="@images/clock.png"/>
+               <Image url="@images/clock.png" />
            </image>
        </ImageView>
    </children>

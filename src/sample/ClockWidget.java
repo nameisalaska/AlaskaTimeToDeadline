@@ -6,6 +6,7 @@ import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
+import javafx.scene.control.Tooltip;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 
@@ -48,9 +49,10 @@ public class ClockWidget   {
         threadforUpdate.start();
     }
 
-    public void addTimeZone(String value) {
+    public void addTimeZone(String value, String nameOfZone) {
         zones.add( TimeZone.getTimeZone(value) );
         Label clocklabel = new Label(); Label label = new Label();
+        Tooltip.install(label, new Tooltip(nameOfZone));
         clocks.add( new MyLabel( 284, 112, clockX, 15, 42 ).createLabel( clocklabel, value ) );
         labels.add( new MyLabel( 80, 25, labelX, 14, 13 ).createLabel( label, value ) );
         labelsName.add(value);

@@ -23,10 +23,12 @@ import java.util.TimeZone;
  */
 
 public class MainController implements Initializable {
-    private static final double SCALE = 1.3; // коэффициент увеличения
-    private static final double DURATION = 300; // время анимации в мс
+    private static final double SCALE = 1.3; // size for increase;
+    private static final double DURATION = 300; // time of animation;
+    private static final double QUANTITYOFCLOCK = 7;
+
     static UpdatingThread threadForUpdate;
-    static private ClockWidget clock = new ClockWidget();
+    static private ClockWidget clockWidget = new ClockWidget();
     public ArrayList<Label> labelclocks = new ArrayList<Label>();
     /*  Var 'control' and 'count' use for cheking in the next methods
       */
@@ -36,13 +38,13 @@ public class MainController implements Initializable {
     @FXML
     private ComboBox combobox;      // with value of Time Zones for select ;
     @FXML
-    private ComboBox comboboxdelete; // with value of Time Zones for delete;
+    private ComboBox comboboxDelete; // with value of Time Zones for delete;
     @FXML
     private Button buttonOpenClock;
     @FXML
     private ImageView mapIcon;
     /*
-    labels clock1 - clock5 for writing selected Time Zones;
+    labels clock1 - clock7 for writing selected Time Zones;
      */
     @FXML
     private Label clock1;
@@ -52,36 +54,31 @@ public class MainController implements Initializable {
     private Label clock3;
     @FXML
     private Label clock4;
-    //  public List<String>  timeZones = Arrays.asList( "GMT-09:00", "GMT-08:00", "GMT-07:00", "GMT-06:00", "GMT-05:00", "GMT-04:00", "GMT-03:00", "GMT-02:00", "GMT-01:00", "GMT+00:00", "GMT+01:00", "GMT+02:00", "GMT+03:00", "GMT+04:00", "GMT+05:00", "GMT+06:00", "GMT+07:00", "GMT+08:00", "GMT+09:00", "GMT+10:00", "GMT+11:00", "GMT+12:00") ;
     @FXML
     private Label clock5;
+    @FXML
+    private Label clock6;
+    @FXML
+    private Label clock7;
+
     private int count = 0; // count of Time Zones
-    private ArrayList<String> deleteItems = new ArrayList<String>();
-    private ArrayList<String> labelsName = new ArrayList<String>();
+    private ArrayList<String> deleteItems = new ArrayList<>();
+    private ArrayList<String> labelsName = new ArrayList<>();
+    public List<String>  timeZones = Arrays.asList("GMT-09:00 , Anchorage, Alaska", "GMT-08:00, Los Angeles, Vancouver, Tijuana", "GMT-07:00, Phoenix, Calgary, Ciudad Juarez", "GMT-06:00, Chicago, Guatemala City, Mexico City, San Jose, San Salvador, Winnipeg", "GMT-05:00, New York, Lima, Toronto, Bogota, Havana, Kingston", "GMT-04:00, Caracas, Santiago, Manaus, Halifax, Santo Domingo", "GMT-03:00, Buenos Aires, Montevideo, Sao Paulo", "GMT-02:00, Brazil, United Kingdom", "GMT-01:00, Cape Verde, Denmark, Greenland, Portugal", "GMT-00:00, Accra, Casablanca, Dakar, Dublin, Lisbon, London", "GMT+01:00, Berlin, Lagos, Madrid, Paris, Rome, Tunis, Vienna, Warsaw", "GMT+02:00, Athens, Bucharest, Cairo, Helsinki, Jerusalem, Johannesburg, Kiev", "GMT+03:00, Istanbul, Moscow, Nairobi, Baghdad, Doha, Khartoum, Minsk, Riyadh", "GMT+04:00, Baku, Dubai, Samara, Muscat", "GMT+05:00, Karachi, Tashkent, Yekaterinburg", "GMT+06:00, Almaty, Dhaka, Omsk", "GMT+07:00, Jakarta, Bangkok, Novosibirsk, Hanoi", "GMT+08:00, Beijing, Taipei, Perth, Manila, Denpasar, Irkutsk", "GMT+09:00, Seoul,Tokyo, Ambon, Yakutsk", "GMT+10:00, Port Moresby, Sydney, Vladivostok", "GMT+11:00, Noumea", "GMT+12:00, Auckland, Suva" );
 
-    private void modifyButton(final Runnable action) {
+    private void setAnimation() {
 
-
-        // создаём анимацию увеличения картинки
+        //Increase animation
         final ScaleTransition animationGrow = new ScaleTransition( Duration.millis( DURATION ), mapIcon );
         animationGrow.setToX( SCALE );
         animationGrow.setToY( SCALE );
 
-
-        // и уменьшения
+        //Decrease animation
         final ScaleTransition animationShrink = new ScaleTransition( Duration.millis( DURATION ), mapIcon );
         animationShrink.setToX( 1 );
         animationShrink.setToY( 1 );
 
-      /*  // добавляем эффект отраженичя
-        final Reflection effect = new Reflection();
-        mapIcon.setEffect(effect);
-      */
-        // обработчик нажатия мыши
-
-        // при наведении курсора мы запускаем анимацию увеличения кнопки
         mapIcon.setOnMouseEntered( new EventHandler<MouseEvent>() {
-
             public void handle(MouseEvent event) {
                 mapIcon.toFront();
                 animationShrink.stop();
@@ -97,12 +94,13 @@ public class MainController implements Initializable {
             }
         } );
     }
+
     @FXML
     public void addSelectedTimeZone() {
         try {
             boolean var = false;
-            if (count > 4) {
-                showErrMessage( "Sorry. You can select only 5 Time Zones" );
+            if (count == QUANTITYOFCLOCK ) {
+                showErrMessage( "Sorry. You can select only 10 Time Zones" );
             } else {
                 for (int j = 0; j < count; j++) {
                     if (labelclocks.get( j ).getText().equals( combobox.getValue() )) {
@@ -115,13 +113,14 @@ public class MainController implements Initializable {
                     deleteItems.add((String) combobox.getValue());
                     setTextlabel();
                     loadDeleteItems();
-                    clock.addTimeZone( ((String) combobox.getValue()).substring( 0, 9 ) );
+                    clockWidget.addTimeZone( ((String) combobox.getValue()).substring( 0, 9 ), (String)combobox.getValue() );
                     buttonOpenClock.setDisable( false );
                     count++;
                 }
             }
         } catch (NullPointerException e) {
             showErrMessage( "First select" );
+            e.printStackTrace();
     }
     }
 
@@ -145,6 +144,7 @@ public class MainController implements Initializable {
         alert.setContentText( message );
         alert.showAndWait();
     }
+
     @FXML
     public void setTextlabel( ) {
         for (int i = 0; i < labelclocks.size(); i++) {
@@ -155,27 +155,29 @@ public class MainController implements Initializable {
             Tooltip.install( labelclocks.get( i ), new Tooltip( labelsName.get( i ) ) );
         }
     }
+
     @FXML
-    public void openClock() {
+    public void OpenClockWidjet() {
         control += 1;
         if (control == 1) {
-            clock.start();
+            clockWidget.start();
         } else {
-            clock.Exit();
-            clock.AgainStart();
+            clockWidget.Exit();
+            clockWidget.AgainStart();
         }
     }
+
     @FXML
     public void deleteSelectedTimeZone() {
-        if(comboboxdelete.getValue() == null) {
+        if(comboboxDelete.getValue() == null) {
             showErrMessage( "First Select" );
         } else {
-            deleteItems.remove( comboboxdelete.getValue() );
-            labelsName.remove( comboboxdelete.getValue() );
+            deleteItems.remove( comboboxDelete.getValue() );
+            labelsName.remove( comboboxDelete.getValue() );
             setTextlabel();
-            clock.deleteTimeZone( ((String) comboboxdelete.getValue()).substring( 0, 9 ) );
+            clockWidget.deleteTimeZone( ((String) comboboxDelete.getValue()).substring( 0, 9 ) );
             loadDeleteItems();
-            count -= 1;             //use in method 'clickOk';
+            count -= 1;             //use in method 'addSelectedTimeZone' for active Button "Open..";
 
         }
     }
@@ -188,13 +190,16 @@ public class MainController implements Initializable {
         labelclocks.add( clock3 );
         labelclocks.add( clock4 );
         labelclocks.add( clock5 );
+        labelclocks.add( clock6 );
+        labelclocks.add( clock7 );
     }
 
     public void createClockWidget() {
-        clock.pane = new Pane();
-        clock.stage = new Stage();
-        clock.labelX = 80;
-        clock.addTimeZone( TimeZone.getDefault().getID() );
+        clockWidget.pane = new Pane();
+        clockWidget.stage = new Stage();
+        clockWidget.labelX = 80;
+        // time in your location
+        //clock.addTimeZone( TimeZone.getDefault().getID(), TimeZone.getDefault().getDisplayName());
     }
 
     private void launch() {
@@ -203,40 +208,16 @@ public class MainController implements Initializable {
         threadForUpdate = new UpdatingThread();
         threadForUpdate.start();
         createClockWidget();
-        modifyButton( new Runnable() {
-
-            public void run() {
-            }
-        } );
+        setAnimation();
     }
+
     public void loadItems() {
-        combobox.getItems().addAll( "GMT-09:00 , Anchorage, Alaska",
-                "GMT-08:00, Los Angeles, Vancouver, Tijuana",
-                "GMT-07:00, Phoenix, Calgary, Ciudad Juarez",
-                "GMT-06:00, Chicago, Guatemala City, Mexico City, San Jose, San Salvador, Winnipeg",
-                "GMT-05:00, New York, Lima, Toronto, Bogota, Havana, Kingston",
-                "GMT-04:00, Caracas, Santiago, Manaus, Halifax, Santo Domingo",
-                "GMT-03:00, Buenos Aires, Montevideo, Sao Paulo",
-                "GMT-02:00, Brazil, United Kingdom",
-                "GMT-01:00, Cape Verde, Denmark, Greenland, Portugal",
-                "GMT-00:00, Accra, Casablanca, Dakar, Dublin, Lisbon, London",
-                "GMT+01:00, Berlin, Lagos, Madrid, Paris, Rome, Tunis, Vienna, Warsaw",
-                "GMT+02:00, Athens, Bucharest, Cairo, Helsinki, Jerusalem, Johannesburg, Kiev",
-                "GMT+03:00, Istanbul, Moscow, Nairobi, Baghdad, Doha, Khartoum, Minsk, Riyadh",
-                "GMT+04:00, Baku, Dubai, Samara, Muscat",
-                "GMT+05:00, Karachi, Tashkent, Yekaterinburg",
-                "GMT+06:00, Almaty, Dhaka, Omsk",
-                "GMT+07:00, Jakarta, Bangkok, Novosibirsk, Hanoi",
-                "GMT+08:00, Beijing, Taipei, Perth, Manila, Denpasar, Irkutsk",
-                "GMT+09:00, Seoul,Tokyo, Ambon, Yakutsk",
-                "GMT+10:00, Port Moresby, Sydney, Vladivostok",
-                "GMT+11:00, Noumea",
-                "GMT+12:00, Auckland, Suva" );
+        combobox.getItems().addAll(timeZones);
     }
 
     public void loadDeleteItems(){
-        comboboxdelete.getItems().clear();
-        comboboxdelete.getItems().addAll( deleteItems );
+        comboboxDelete.getItems().clear();
+        comboboxDelete.getItems().addAll( deleteItems );
     }
 
     class UpdatingThread extends Thread {
@@ -245,7 +226,7 @@ public class MainController implements Initializable {
             //  System.out.println( "Привет из первого побочного потока!" );
             while (true) {
                 Platform.runLater( () -> {
-                    clock.refreshTime( TimeZone.getDefault(), labelTime );
+                    clockWidget.refreshTime( TimeZone.getDefault(), labelTime );
                 } );
                 try {
                     Thread.sleep( 1000 );
