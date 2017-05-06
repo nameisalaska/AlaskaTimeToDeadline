@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.Pane?>
+
+<ScrollPane xmlns:fx="http://javafx.com/fxml/1" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity"
+            minWidth="-Infinity" prefHeight="466.0" prefWidth="695.0" xmlns="http://javafx.com/javafx/8.0.65"
+            fx:controller="sample.TimeZoneMapController">
+    <content>
+        <Pane fx:id="pane" prefHeight="468.0" prefWidth="681.0">
+            <children>
+                <ImageView fitHeight="455.0" fitWidth="681.0">
+                    <image>
+                        <Image url="@images/time-zones-map2.png"/>
+                    </image>
+                </ImageView>
+                <Pane fx:id="paneUnGMT9" prefHeight="452.0" prefWidth="31.0">
+                    <cursor>
+                        <Cursor fx:constant="HAND"/>
+                    </cursor>
+                </Pane>
+                <Pane fx:id="paneUnGMT8" layoutX="31.0" prefHeight="452.0" prefWidth="33.0">
+
+                    <cursor>
+                        <Cursor fx:constant="HAND"/>
+                    </cursor>
+                </Pane>
+
+                <Pane fx:id="paneUnGMT7" layoutX="64.0" prefHeight="452.0" prefWidth="30.0">
+                    <cursor>
+                        <Cursor fx:constant="HAND"/>
+                    </cursor>
+                </Pane>
+
+                <Pane fx:id="paneUnGMT6" layoutX="94.0" prefHeight="452.0" prefWidth="31.0">
+                    <cursor>
+                        <Cursor fx:constant="HAND"/>
+                    </cursor>
+                </Pane>
+                <Pane fx:id="paneUnGMT4" layoutX="125.0" prefHeight="452.0" prefWidth="30.0">
+                    <cursor>
+                        <Cursor fx:constant="HAND"/>
+                    </cursor>
+                </Pane>
+                <Pane fx:id="paneUnGMT3" layoutX="155.0" prefHeight="452.0" prefWidth="32.0">
+                    <cursor>
+                        <Cursor fx:constant="HAND"/>
+                    </cursor>
+                </Pane>
+                <Pane fx:id="paneUnGMT2" layoutX="187.0" prefHeight="452.0" prefWidth="33.0">
+                    <cursor>
+                        <Cursor fx:constant="HAND"/>
+                    </cursor>
+                </Pane>
+                <Pane fx:id="paneUnGMT1" layoutX="220.0" prefHeight="452.0" prefWidth="27.0">
+                    <cursor>
+                        <Cursor fx:constant="HAND"/>
+                    </cursor>
+                </Pane>
+                <Pane fx:id="paneUnGMT0" layoutX="247.0" prefHeight="452.0" prefWidth="30.0">
+                    <cursor>
+                        <Cursor fx:constant="HAND"/>
+                    </cursor>
+                </Pane>
+                <Pane fx:id="paneGMT1" layoutX="277.0" prefHeight="452.0" prefWidth="33.0">
+                    <cursor>
+                        <Cursor fx:constant="HAND"/>
+                    </cursor>
+                </Pane>
+                <Pane fx:id="paneGMT2" layoutX="310.0" prefHeight="452.0" prefWidth="30.0">
+                    <cursor>
+                        <Cursor fx:constant="HAND"/>
+                    </cursor>
+                </Pane>
+                <Pane fx:id="paneGMT3" layoutX="340.0" prefHeight="452.0" prefWidth="30.0">
+                    <cursor>
+                        <Cursor fx:constant="HAND"/>
+                    </cursor>
+                </Pane>
+                <Pane fx:id="paneGMT4" layoutX="370.0" prefHeight="452.0" prefWidth="31.0">
+                    <cursor>
+                        <Cursor fx:constant="HAND"/>
+                    </cursor>
+                </Pane>
+                <Pane fx:id="paneGMT5" layoutX="401.0" prefHeight="452.0" prefWidth="31.0">
+                    <cursor>
+                        <Cursor fx:constant="HAND"/>
+                    </cursor>
+                </Pane>
+                <Pane fx:id="paneGMT6" layoutX="432.0" prefHeight="452.0" prefWidth="30.0">
+                    <cursor>
+                        <Cursor fx:constant="HAND"/>
+                    </cursor>
+                </Pane>
+                <Pane fx:id="paneGMT7" layoutX="462.0" prefHeight="452.0" prefWidth="32.0">
+                    <cursor>
+                        <Cursor fx:constant="HAND"/>
+                    </cursor>
+                </Pane>
+                <Pane fx:id="paneGMT8" layoutX="494.0" prefHeight="452.0" prefWidth="30.0">
+                    <cursor>
+                        <Cursor fx:constant="HAND"/>
+                    </cursor>
+                </Pane>
+                <Pane fx:id="paneGMT9" layoutX="524.0" prefHeight="452.0" prefWidth="32.0">
+                    <cursor>
+                        <Cursor fx:constant="HAND"/>
+                    </cursor>
+                </Pane>
+                <Pane fx:id="paneGMT10" layoutX="556.0" prefHeight="452.0" prefWidth="31.0">
+                    <cursor>
+                        <Cursor fx:constant="HAND"/>
+                    </cursor>
+                </Pane>
+                <Pane fx:id="paneGMT11" layoutX="587.0" prefHeight="452.0" prefWidth="31.0">
+                    <cursor>
+                        <Cursor fx:constant="HAND"/>
+                    </cursor>
+                </Pane>
+                <Pane fx:id="paneGMT12" layoutX="618.0" prefHeight="452.0" prefWidth="31.0">
+                    <cursor>
+                        <Cursor fx:constant="HAND"/>
+                    </cursor>
+                </Pane>
+                <Pane fx:id="paneGMT121" layoutX="649.0" prefHeight="452.0" prefWidth="31.0">
+                    <cursor>
+                        <Cursor fx:constant="HAND"/>
+                    </cursor>
+                </Pane>
+            </children>
+        </Pane>
+    </content>
+</ScrollPane>

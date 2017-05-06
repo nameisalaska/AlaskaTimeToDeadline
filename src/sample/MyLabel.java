@@ -1,11 +1,7 @@
 package sample;
 
-import javafx.fxml.FXML;
-import javafx.scene.control.*;
-import javafx.scene.layout.Pane;
+import javafx.scene.control.Label;
 import javafx.scene.text.Font;
-
-import static javax.swing.SwingConstants.CENTER;
 
 /**
  * Created by Alaska on 26.01.2017.
@@ -27,7 +23,7 @@ public class MyLabel {
         this.value = value;
     }
 
-    public Label createLable(Label label, String s) {
+    public Label createLabel(Label label, String s) {
         label.setText(s);
         label.setLayoutX( x );
         label.setLayoutY( y );

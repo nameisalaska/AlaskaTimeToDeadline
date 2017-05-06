@@ -2,15 +2,9 @@ package sample;/**
  * Created by Alaska on 24.01.2017.
  */
 
-import javafx.application.Application;
 import javafx.application.Platform;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
-import javafx.fxml.Initializable;
-import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Alert;
-import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
@@ -21,21 +15,18 @@ import java.util.TimeZone;
 
 public class ClockWidget   {
 
-    public ArrayList<TimeZone> zones = new ArrayList<TimeZone>();      // Array of selected Time Zones;
-    public ArrayList<Label> clocks = new ArrayList<Label>();       // Array of clocks;
-    private ArrayList<Label> labels = new ArrayList<Label>();      // Array of names of clocks;
-    private ArrayList<String> labelsName = new ArrayList<String>(); // Array of names for labels;
-
+    static AffableThread threadforUpdate;
+    public ArrayList<TimeZone> zones = new ArrayList<>();      // Array of selected Time Zones;
+    public ArrayList<Label> clocks = new ArrayList<>();       // Array of clocks;
     @FXML
     public Pane pane;
     public Stage stage;
-    /*
-    Coordinates for clocks and labels for names of the clocks;
-     */
     public int clockX ;
-    public int labelX ;
 
-    static AffableThread threadforUpdate;
+    //Coordinates for clocks and labels for names of the clocks;
+    public int labelX;
+    private ArrayList<Label> labels = new ArrayList<>();      // Array of names of clocks;
+    private ArrayList<String> labelsName = new ArrayList<>(); // Array of names for labels;
 
     public void start() {
         stage.setScene(new Scene(pane,clocks.size() * 200,200));
@@ -43,12 +34,12 @@ public class ClockWidget   {
         updateTheClock();
     }
 
-    public void AgainStart(){
+    public void AgainStart() {
+        stage.setWidth( clocks.size() * 200 );
         stage.show();
     }
 
     public void Exit(){
-        stage.setWidth( clocks.size() * 200 );
         stage.close();
     }
 
@@ -60,10 +51,10 @@ public class ClockWidget   {
     public void addTimeZone(String value) {
         zones.add( TimeZone.getTimeZone(value) );
         Label clocklabel = new Label(); Label label = new Label();
-        clocks.add( new MyLabel( 284, 112, clockX, 15, 42 ).createLable(clocklabel, value));
-        labels.add(new MyLabel( 80, 25, labelX, 14 , 13).createLable(label,value));
+        clocks.add( new MyLabel( 284, 112, clockX, 15, 42 ).createLabel( clocklabel, value ) );
+        labels.add( new MyLabel( 80, 25, labelX, 14, 13 ).createLabel( label, value ) );
         labelsName.add(value);
-        pane.getChildren().addAll( new MyLabel( 284, 112, clockX, 15, 42 ).createLable(clocklabel,value) , new MyLabel( 80, 25, labelX , 14 , 13).createLable(label,value));
+        pane.getChildren().addAll( new MyLabel( 284, 112, clockX, 15, 42 ).createLabel( clocklabel, value ), new MyLabel( 80, 25, labelX, 14, 13 ).createLabel( label, value ) );
         clockX += 200; labelX += 200;
         stage.setWidth( clocks.size() * 200 );
     }
@@ -75,7 +66,8 @@ public class ClockWidget   {
         labels.remove(labels.size()-1);
         labelsName.remove(value);
         renameLabels();
-        clockX -=200; labelX -=200;                      // use in method 'addTimeZone'
+        clockX -= 200;
+        labelX -= 200; //use in method 'addTimeZone'
         stage.setWidth( clocks.size() * 200 );
     }
     public void renameLabels(){
@@ -96,15 +88,11 @@ public class ClockWidget   {
         public void run() {
             System.out.println("Привет из побочного потока!");
             while (true) {
-                Platform.runLater( new Runnable() {
-                    @Override
-                    public void run() {
-                        for ( int i = 0; i < zones.size(); i++) {
-                            refreshTime( zones.get( i ), clocks.get( i ) );
-                        }
+                Platform.runLater( () -> {
+                    for (int i = 0; i < zones.size(); i++) {
+                        refreshTime( zones.get( i ), clocks.get( i ) );
                     }
                 } );
-
                 try {
                     Thread.sleep(1000);
                 } catch (InterruptedException e) {
