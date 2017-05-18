@@ -7,11 +7,16 @@ import javafx.fxml.FXML;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.control.Tooltip;
+import javafx.scene.image.Image;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 
+import java.net.URL;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Date;
 import java.util.TimeZone;
 
 public class ClockWidget   {
@@ -23,25 +28,29 @@ public class ClockWidget   {
     public Pane pane;
     public Stage stage;
     public int clockX ;
+    public Date deadlineDate;
 
     //Coordinates for clocks and labels for names of the clocks;
     public int labelX;
     private ArrayList<Label> labels = new ArrayList<>();      // Array of names of clocks;
     private ArrayList<String> labelsName = new ArrayList<>(); // Array of names for labels;
-
+    private ArrayList<Label> deadlineLabels = new ArrayList<>();
     public void start() {
-        stage.setScene(new Scene(pane,clocks.size() * 200,200));
+        stage.setScene(new Scene(pane,clocks.size() * 200,160));
+        stage.getIcons().add( new Image( getResource( "mainIcon.png" ).toExternalForm() ) );
+        stage.setResizable(false);
+        stage.setTitle( "Deadline Time" );
         stage.show();
         updateTheClock();
     }
-
-    public void AgainStart() {
-        stage.setWidth( clocks.size() * 200 );
-        stage.show();
+    private URL getResource(String name) {
+        return getClass().getResource( name );
     }
 
-    public void Exit(){
-        stage.close();
+    public void againStart() {
+        stage.setWidth( clocks.size() * 200 );
+        stage.show();
+        stage.toFront();
     }
 
     public void updateTheClock() {
@@ -51,29 +60,46 @@ public class ClockWidget   {
 
     public void addTimeZone(String value, String nameOfZone) {
         zones.add( TimeZone.getTimeZone(value) );
-        Label clocklabel = new Label(); Label label = new Label();
+        Label clocklabel = new Label(); Label label = new Label(); Label deadlineLabel = new Label();
         Tooltip.install(label, new Tooltip(nameOfZone));
         clocks.add( new MyLabel( 284, 112, clockX, 15, 42 ).createLabel( clocklabel, value ) );
         labels.add( new MyLabel( 80, 25, labelX, 14, 13 ).createLabel( label, value ) );
+        deadlineLabels.add( new MyLabel( 160, 25, labelX - 75, 92, 13 ).createLabel(deadlineLabel, " lololo" ) );
         labelsName.add(value);
-        pane.getChildren().addAll( new MyLabel( 284, 112, clockX, 15, 42 ).createLabel( clocklabel, value ), new MyLabel( 80, 25, labelX, 14, 13 ).createLabel( label, value ) );
+        pane.getChildren().addAll( new MyLabel( 284, 112, clockX, 15, 42 ).createLabel( clocklabel, value ), new MyLabel( 80, 25, labelX, 14, 13 ).createLabel( label, value ), new MyLabel( 160, 25, labelX - 75, 92, 13 ).createLabel(deadlineLabel, "0000/00/00 00:00:00 " )  );
+        showDeadLineTime();
         clockX += 200; labelX += 200;
         stage.setWidth( clocks.size() * 200 );
+    }
+
+    public void showDeadLineTime(){
+        for (int i = 0; i <  deadlineLabels.size(); i++) {
+            deadlineLabels.get( i ).setText("");
+        }
+        if(deadlineDate!=null){
+        for(int i = 0; i < labelsName.size(); i++) {
+            DateFormat dfm = new SimpleDateFormat( "yyyy/MM/dd HH:mm:ss" );
+            dfm.setTimeZone( TimeZone.getTimeZone( labelsName.get( i ) ) );
+            deadlineLabels.get( i ).setText( dfm.format( deadlineDate ) );
+        }
+        }
     }
 
     public void deleteTimeZone(String value){
         pane.getChildren().removeAll(clocks.get(clocks.size()-1), labels.get(labels.size()-1));
         zones.remove( TimeZone.getTimeZone(value));
         clocks.remove(clocks.size() - 1);
-        labels.remove(labels.size()-1);
+        labels.remove(labels.size() - 1);
+        deadlineLabels.remove(deadlineLabels.size() - 1);
         labelsName.remove(value);
         renameLabels();
+        showDeadLineTime();
         clockX -= 200;
         labelX -= 200; //use in method 'addTimeZone'
         stage.setWidth( clocks.size() * 200 );
     }
     public void renameLabels(){
-        for(int i = 1; i < labels.size(); i++){
+        for(int i = 0; i < labels.size(); i++){
             labels.get(i).setText( labelsName.get(i));
         }
     }
