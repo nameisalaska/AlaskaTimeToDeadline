@@ -1,5 +1,4 @@
 package sample;
-import com.sun.org.apache.xml.internal.security.utils.resolver.ResourceResolver;
 import javafx.animation.*;
 import javafx.beans.property.DoubleProperty;
 import javafx.scene.Group;
@@ -9,7 +8,6 @@ import javafx.scene.shape.Line;
 import javafx.scene.transform.Rotate;
 import javafx.util.Duration;
 import java.util.Calendar;
-
 /**
  * Displays an animated AnalogueClock face.
  * Time is the system time for the local timezone.
@@ -50,15 +48,7 @@ public class AnalogueClock extends Group {
     // animate the hands with the time.
     bindClockHandsToTime(hourHand, minuteHand, secondHand);
 
-    getChildren().addAll(
-            face,
-            brand,
-            createTicks(clockRadius),
-            createSpindle(clockRadius),
-            hourHand,
-            minuteHand,
-            secondHand
-    );
+    getChildren().addAll( face, brand, createTicks(clockRadius), createSpindle(clockRadius), hourHand, minuteHand, secondHand );
   }
 
   /** @return radial ticks around the clock center to mark time. */
@@ -74,6 +64,7 @@ public class AnalogueClock extends Group {
       tick.setLayoutY(clockRadius);
       tick.getTransforms().add(new Rotate(i * (360 / 12)));
       ticks.getChildren().add(tick);
+
     }
     return ticks;
   }

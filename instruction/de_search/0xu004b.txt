@@ -1,0 +1,8 @@
+KATE
+ 7
+KHARKOV
+ 7
+KN
+ 7
+KNOW
+ 2,1

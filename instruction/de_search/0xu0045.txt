@@ -1,0 +1,4 @@
+EQUAL
+ 4
+EVERY
+ 6

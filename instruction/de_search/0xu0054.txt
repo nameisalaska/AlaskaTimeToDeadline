@@ -1,0 +1,16 @@
+TECHNICAL
+ 7
+TH
+ 4
+THE
+ 7,6,5,2,1
+THEM
+ 4
+THIS
+ 6,2,1,7,3,4
+TIME
+ 4,2,1,6,5
+TO
+ 3,2,1,6,4
+TRACK
+ 2,1

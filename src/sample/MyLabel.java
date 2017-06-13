@@ -4,7 +4,7 @@ import javafx.scene.control.Label;
 import javafx.scene.text.Font;
 
 /**
- * Created by  on 26.01.2017.
+ * Created by  Alaska on 26.01.2017.
  */
 
 public class MyLabel {

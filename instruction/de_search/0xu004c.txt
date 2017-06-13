@@ -1,0 +1,8 @@
+LAST
+ 6
+LINE
+ 3
+LOCATED
+ 2,1
+LOST
+ 6

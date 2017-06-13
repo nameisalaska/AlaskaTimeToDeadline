@@ -1,0 +1,14 @@
+UNIVERSITY
+ 7
+UNUSED
+ 4
+UP
+ 4,2,1
+USAGE
+ 2,1
+USE
+ 3
+USED
+ 6
+USER
+ 6,4,5,2,1

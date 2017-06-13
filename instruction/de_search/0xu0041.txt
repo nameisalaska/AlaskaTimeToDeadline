@@ -1,0 +1,22 @@
+ABOUT
+ 7,2,1
+ADDING
+ 4
+AFTER
+ 6
+AGAIN
+ 6
+ALL
+ 6
+ALLOWS
+ 2,1
+ALSO
+ 6,5,4,2,1
+AMOUNT
+ 4
+AND
+ 5,2,1,4,6
+ARE
+ 6
+AS
+ 7,4

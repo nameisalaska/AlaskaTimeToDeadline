@@ -1,0 +1,18 @@
+WAS
+ 7
+WAY
+ 4
+WHEN
+ 6
+WHICH
+ 2,1
+WHO
+ 2,1
+WIDGET
+ 4
+WILL
+ 5,2,1
+WITH
+ 3,6,2,1,4
+WORK
+ 6,3,7

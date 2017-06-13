@@ -1,0 +1,10 @@
+NATIONAL
+ 7
+NEED
+ 4,2,1
+NEEDED
+ 4,2,1,5
+NEW
+ 5
+NOT
+ 2,1,6
