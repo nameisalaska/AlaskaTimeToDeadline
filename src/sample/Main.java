@@ -1,24 +1,24 @@
 package sample;
-/**
- * Created by Alaska on 24.01.2017.
- */
 import javafx.application.Application;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.image.Image;
 import javafx.stage.Stage;
 import javafx.fxml.FXMLLoader;
-
 import java.beans.XMLDecoder;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.net.URL;
 import java.util.Date;
 
+/**
+ * Created by Alaska on 24.01.2017.
+ */
 
 public class Main extends Application {
     public static Stage stage;
-    MainController mainController = new MainController();
+    private MainController mainController = new MainController();
+
     public static void main(String[] args) {
         launch( args );
     }
@@ -45,7 +45,9 @@ public class Main extends Application {
             e.printStackTrace();
          }
     }
+
     private URL getResource(String name) {
         return getClass().getResource( name );
     }
 }
+

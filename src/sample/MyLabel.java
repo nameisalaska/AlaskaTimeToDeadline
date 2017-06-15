@@ -1,5 +1,4 @@
 package sample;
-
 import javafx.scene.control.Label;
 import javafx.scene.text.Font;
 
@@ -9,11 +8,11 @@ import javafx.scene.text.Font;
 
 public class MyLabel {
 
-    public double width;
-    public double height;
-    public double x;
-    public double y;
-    public int value;
+    private double width;
+    private double height;
+    private double x;
+    private double y;
+    private int value;
 
     public MyLabel(double width, double height, double x, double y, int value) {
         this.width = width;
@@ -32,5 +31,4 @@ public class MyLabel {
         label.setFont( new Font( value ) );
         return label;
     }
-
 }

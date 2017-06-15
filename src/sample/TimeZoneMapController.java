@@ -1,7 +1,4 @@
-package sample;/**
- * Created by Alaska on 04.05.2017.
- */
-
+package sample;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -14,11 +11,14 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
 import javafx.scene.text.Font;
 import javafx.stage.Stage;
-
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+
+/**
+ * Created by Alaska on 04.05.2017.
+ */
 
 public class TimeZoneMapController implements Initializable {
 
@@ -69,28 +69,31 @@ public class TimeZoneMapController implements Initializable {
     @FXML
     Pane pane;
     private static Stage stage = new Stage();
-    String[] unGMT9 = {"(GMT-9:00) America/Anchorage", "(GMT-9:00) America/Nome", "(GMT-9:00) America/Sitka", "(GMT-9:00) America/Yakutat", "(GMT-9:00) Pacific/Gambier", "(GMT-9:00) US/Alaska"};
-    String[] unGMT8 = { "(GMT-8:00) America/Dawson", "(GMT-8:00) America/Ensenada", "(GMT-8:00) America/Metlakatla", "(GMT-8:00) Canada/Yukon", "(GMT-8:00) Mexico/BajaNorte", "(GMT-8:00) Pacific/Pitcairn"};
-    String[] unGMT7 = {"(GMT-7:00) America/Boise", "(GMT-7:00) America/Cambridge_Bay", "(GMT-7:00) America/Phoenix", "(GMT-7:00) America/Shiprock", "(GMT-7:00) America/Yellowknife", "(GMT-7:00) US/Mountain"};
-    String[] unGMT6 = {"(GMT-6:00) America/Bahia_Banderas", "(GMT-6:00) America/Belize", "(GMT-6:00) America/Guatemala", "(GMT-6:00) America/Monterrey", "(GMT-6:00) America/Tegucigalpa", "(GMT-6:00) Chile/EasterIsland", "(GMT-6:00) Mexico/General", "(GMT-6:00) US/Indiana-Starke"};
-    String[] unGMT5 = {"(GMT-5:00) America/Atikokan", "(GMT-5:00) America/Bogota", "(GMT-5:00) America/Cayman", "(GMT-5:00) America/Coral_Harbour", "(GMT-5:00) Brazil/Acre", "(GMT-5:00) Canada/Eastern", "(GMT-5:00) Cuba", "(GMT-5:00) IET", "(GMT-5:00) Jamaica", "(GMT-5:00) US/East-Indiana", "(GMT-5:00) US/Eastern", "(GMT-5:00) US/Michigan"};
-    String[] unGMT4 = { "(GMT-4:00) America/Anguilla", "(GMT-4:00) America/Antigua", "(GMT-4:00) America/Aruba", "(GMT-4:00) America/Curacao", "(GMT-4:00) America/Montserrat", "(GMT-4:00) Antarctica/Palmer", "(GMT-4:00) Atlantic/Bermuda", "(GMT-4:00) Brazil/West", "(GMT-4:00) Canada/Atlantic", "(GMT-4:00) Chile/Continental"};
-    String[] unGMT3 = {"(GMT-3:00) America/Araguaina", "(GMT-3:00) America/Argentina/Buenos_Aires", "(GMT-3:00) America/Miquelon", "(GMT-3:00) America/Montevideo", "(GMT-3:00) America/Rosario", "(GMT-3:00) Antarctica/Rothera", "(GMT-3:00) Brazil/East"};
-    String[] unGMT2 = {"(GMT-2:00) America/Noronha", "(GMT-2:00) Atlantic/South_Georgia", "(GMT-2:00) Brazil/DeNoronha"};
-    String[] unGMT1 = {"(GMT-1:00) America/Scoresbysund", "(GMT-1:00) Atlantic/Azores", "(GMT-1:00) Atlantic/Cape_Verde"};
-    String[] GMT0 = {"(GMT 0:00) Africa/Bamako", "(GMT 0:00) Africa/Banjul", "(GMT 0:00) Africa/Bissau", "(GMT 0:00) Europe/Lisbon", "(GMT 0:00) Europe/London", "(GMT 0:00) Portugal"};
-    String[] GMT1 = {"(GMT+1:00) Africa/Algiers", "(GMT+1:00) Africa/Windhoek", "(GMT+1:00) Atlantic/Jan_Mayen", "(GMT+1:00) Europe/Amsterdam", "(GMT+1:00) Europe/Andorra", "(GMT+1:00) Europe/Belgrade", "(GMT+1:00) Europe/Berlin", "(GMT+1:00) Europe/Vienna", "(GMT+1:00) Europe/Zurich", "(GMT+1:00) Poland"};
-    String[] GMT2 = {"(GMT+2:00) Europe/Athens", "(GMT+2:00) Europe/Kiev", "(GMT+2:00) Europe/Mariehamn", "(GMT+2:00) Europe/Nicosia", "(GMT+2:00) Israel", "(GMT+2:00) Libya", "(GMT+2:00) Turkey"};
-    String[] GMT3 = {"(GMT+3:00) Africa/Addis_Ababa", "(GMT+3:00) Africa/Asmara", "(GMT+3:00) Africa/Nairobi", "(GMT+3:00) Antarctica/Syowa", "(GMT+3:00) Asia/Aden", "(GMT+3:00) Asia/Qatar", "(GMT+3:00) Asia/Riyadh", "(GMT+3:00) Europe/Kaliningrad", "(GMT+3:00) Europe/Minsk", "(GMT+3:00) Indian/Antananarivo", "(GMT+3:00) Indian/Comoro", "(GMT+3:00) Indian/Mayotte"};
-    String[] GMT4 = { "(GMT+4:00) Asia/Baku", "(GMT+4:00) Asia/Dubai", "(GMT+4:00) Europe/Moscow", "(GMT+4:00) Europe/Samara", "(GMT+4:00) Indian/Mahe"};
-    String[] GMT5 = {"(GMT+5:00) Antarctica/Mawson", "(GMT+5:00) Asia/Aqtau", "(GMT+5:00) Asia/Aqtobe", "(GMT+5:00) Asia/Ashgabat", "(GMT+5:00) Asia/Ashkhabad", "(GMT+5:00) Asia/Dushanbe", "(GMT+5:00) Asia/Karachi", "(GMT+5:00) Asia/Oral", "(GMT+5:00) Asia/Samarkand", "(GMT+5:00) Asia/Tashkent", "(GMT+5:00) Indian/Kerguelen"};
-    String[] GMT6 = {"(GMT+6:00) Antarctica/Vostok", "(GMT+6:00) Asia/Almaty", "(GMT+6:00) Asia/Qyzylorda", "(GMT+6:00) Asia/Yekaterinburg", "(GMT+6:00) Indian/Chagos"};
-    String[] GMT7 = {"(GMT+7:00) Antarctica/Davis", "(GMT+7:00) Asia/Bangkok", "(GMT+7:00) Asia/Ho_Chi_Minh", "(GMT+7:00) Indian/Christmas"};
-    String[] GMT8 = {"(GMT+8:00) Antarctica/Casey", "(GMT+8:00) Asia/Brunei", "(GMT+8:00) Singapore"};
-    String[] GMT9 = {"(GMT+9:00) Asia/Dili", "(GMT+9:00) Asia/Pyongyang", "(GMT+9:00) Asia/Seoul", "(GMT+9:00) Asia/Tokyo", "(GMT+9:00) Japan", "(GMT+9:00) Pacific/Palau"};
-    String[] GMT10 = {"(GMT+10:00) Antarctica/DumontDUrville", "(GMT+10:00) Asia/Khandyga", "(GMT+10:00) Asia/Yakutsk"};
-    String[] GMT11 = {"(GMT+11:00) Antarctica/Macquarie", "(GMT+11:00) Asia/Sakhalin", "(GMT+11:00) Asia/Ust-Nera", "(GMT+11:00) Asia/Vladivostok"};
-    String[] GMT12 = {"(GMT+12:00) Antarctica/McMurdo", "(GMT+12:00) Antarctica/South_Pole", "(GMT+12:00) Kwajalein", "(GMT+12:00) Pacific/Auckland", "(GMT+12:00) Pacific/Wallis"};
+    /*
+    Arrays for comboboxs for checking Time Zone, using for detailed selection;
+     */
+    private String[] unGMT9 = {"(GMT-9:00) America/Anchorage", "(GMT-9:00) America/Nome", "(GMT-9:00) America/Sitka", "(GMT-9:00) America/Yakutat", "(GMT-9:00) Pacific/Gambier", "(GMT-9:00) US/Alaska"};
+    private String[] unGMT8 = {"(GMT-8:00) America/Dawson", "(GMT-8:00) America/Ensenada", "(GMT-8:00) America/Metlakatla", "(GMT-8:00) Canada/Yukon", "(GMT-8:00) Mexico/BajaNorte", "(GMT-8:00) Pacific/Pitcairn"};
+    private String[] unGMT7 = {"(GMT-7:00) America/Boise", "(GMT-7:00) America/Cambridge_Bay", "(GMT-7:00) America/Phoenix", "(GMT-7:00) America/Shiprock", "(GMT-7:00) America/Yellowknife", "(GMT-7:00) US/Mountain"};
+    private String[] unGMT6 = {"(GMT-6:00) America/Bahia_Banderas", "(GMT-6:00) America/Belize", "(GMT-6:00) America/Guatemala", "(GMT-6:00) America/Monterrey", "(GMT-6:00) America/Tegucigalpa", "(GMT-6:00) Chile/EasterIsland", "(GMT-6:00) Mexico/General", "(GMT-6:00) US/Indiana-Starke"};
+    private String[] unGMT5 = {"(GMT-5:00) America/Atikokan", "(GMT-5:00) America/Bogota", "(GMT-5:00) America/Cayman", "(GMT-5:00) America/Coral_Harbour", "(GMT-5:00) Brazil/Acre", "(GMT-5:00) Canada/Eastern", "(GMT-5:00) Cuba", "(GMT-5:00) IET", "(GMT-5:00) Jamaica", "(GMT-5:00) US/East-Indiana", "(GMT-5:00) US/Eastern", "(GMT-5:00) US/Michigan"};
+    private String[] unGMT4 = { "(GMT-4:00) America/Anguilla", "(GMT-4:00) America/Antigua", "(GMT-4:00) America/Aruba", "(GMT-4:00) America/Curacao", "(GMT-4:00) America/Montserrat", "(GMT-4:00) Antarctica/Palmer", "(GMT-4:00) Atlantic/Bermuda", "(GMT-4:00) Brazil/West", "(GMT-4:00) Canada/Atlantic", "(GMT-4:00) Chile/Continental"};
+    private String[] unGMT3 = {"(GMT-3:00) America/Araguaina", "(GMT-3:00) America/Argentina/Buenos_Aires", "(GMT-3:00) America/Miquelon", "(GMT-3:00) America/Montevideo", "(GMT-3:00) America/Rosario", "(GMT-3:00) Antarctica/Rothera", "(GMT-3:00) Brazil/East"};
+    private String[] unGMT2 = {"(GMT-2:00) America/Noronha", "(GMT-2:00) Atlantic/South_Georgia", "(GMT-2:00) Brazil/DeNoronha"};
+    private String[] unGMT1 = {"(GMT-1:00) America/Scoresbysund", "(GMT-1:00) Atlantic/Azores", "(GMT-1:00) Atlantic/Cape_Verde"};
+    private String[] GMT0 = {"(GMT 0:00) Africa/Bamako", "(GMT 0:00) Africa/Banjul", "(GMT 0:00) Africa/Bissau", "(GMT 0:00) Europe/Lisbon", "(GMT 0:00) Europe/London", "(GMT 0:00) Portugal"};
+    private String[] GMT1 = {"(GMT+1:00) Africa/Algiers", "(GMT+1:00) Africa/Windhoek", "(GMT+1:00) Atlantic/Jan_Mayen", "(GMT+1:00) Europe/Amsterdam", "(GMT+1:00) Europe/Andorra", "(GMT+1:00) Europe/Belgrade", "(GMT+1:00) Europe/Berlin", "(GMT+1:00) Europe/Vienna", "(GMT+1:00) Europe/Zurich", "(GMT+1:00) Poland"};
+    private String[] GMT2 = {"(GMT+2:00) Europe/Athens", "(GMT+2:00) Europe/Kiev", "(GMT+2:00) Europe/Mariehamn", "(GMT+2:00) Europe/Nicosia", "(GMT+2:00) Israel", "(GMT+2:00) Libya", "(GMT+2:00) Turkey"};
+    private String[] GMT3 = {"(GMT+3:00) Africa/Addis_Ababa", "(GMT+3:00) Africa/Asmara", "(GMT+3:00) Africa/Nairobi", "(GMT+3:00) Antarctica/Syowa", "(GMT+3:00) Asia/Aden", "(GMT+3:00) Asia/Qatar", "(GMT+3:00) Asia/Riyadh", "(GMT+3:00) Europe/Kaliningrad", "(GMT+3:00) Europe/Minsk", "(GMT+3:00) Indian/Antananarivo", "(GMT+3:00) Indian/Comoro", "(GMT+3:00) Indian/Mayotte"};
+    private String[] GMT4 = {"(GMT+4:00) Asia/Baku", "(GMT+4:00) Asia/Dubai", "(GMT+4:00) Europe/Moscow", "(GMT+4:00) Europe/Samara", "(GMT+4:00) Indian/Mahe"};
+    private String[] GMT5 = {"(GMT+5:00) Antarctica/Mawson", "(GMT+5:00) Asia/Aqtau", "(GMT+5:00) Asia/Aqtobe", "(GMT+5:00) Asia/Ashgabat", "(GMT+5:00) Asia/Ashkhabad", "(GMT+5:00) Asia/Dushanbe", "(GMT+5:00) Asia/Karachi", "(GMT+5:00) Asia/Oral", "(GMT+5:00) Asia/Samarkand", "(GMT+5:00) Asia/Tashkent", "(GMT+5:00) Indian/Kerguelen"};
+    private String[] GMT6 = {"(GMT+6:00) Antarctica/Vostok", "(GMT+6:00) Asia/Almaty", "(GMT+6:00) Asia/Qyzylorda", "(GMT+6:00) Asia/Yekaterinburg", "(GMT+6:00) Indian/Chagos"};
+    private String[] GMT7 = {"(GMT+7:00) Antarctica/Davis", "(GMT+7:00) Asia/Bangkok", "(GMT+7:00) Asia/Ho_Chi_Minh", "(GMT+7:00) Indian/Christmas"};
+    private String[] GMT8 = {"(GMT+8:00) Antarctica/Casey", "(GMT+8:00) Asia/Brunei", "(GMT+8:00) Singapore"};
+    private String[] GMT9 = {"(GMT+9:00) Asia/Dili", "(GMT+9:00) Asia/Pyongyang", "(GMT+9:00) Asia/Seoul", "(GMT+9:00) Asia/Tokyo", "(GMT+9:00) Japan", "(GMT+9:00) Pacific/Palau"};
+    private String[] GMT10 = {"(GMT+10:00) Antarctica/DumontDUrville", "(GMT+10:00) Asia/Khandyga", "(GMT+10:00) Asia/Yakutsk"};
+    private String[] GMT11 = {"(GMT+11:00) Antarctica/Macquarie", "(GMT+11:00) Asia/Sakhalin", "(GMT+11:00) Asia/Ust-Nera", "(GMT+11:00) Asia/Vladivostok"};
+    private String[] GMT12 = {"(GMT+12:00) Antarctica/McMurdo", "(GMT+12:00) Antarctica/South_Pole", "(GMT+12:00) Kwajalein", "(GMT+12:00) Pacific/Auckland", "(GMT+12:00) Pacific/Wallis"};
     private ArrayList<Pane> timeZoneOnMap = new ArrayList<>( );
     private List<String> timeZones = Arrays.asList("GMT-09:00 , Anchorage, Alaska", "GMT-08:00, Los Angeles, Vancouver, Tijuana", "GMT-07:00, Phoenix, Calgary, Ciudad Juarez", "GMT-06:00, Chicago, Guatemala City, Mexico City, San Jose, San Salvador, Winnipeg", "GMT-05:00, New York, Lima, Toronto, Bogota, Havana, Kingston", "GMT-04:00, Caracas, Santiago, Manaus, Halifax, Santo Domingo", "GMT-03:00, Buenos Aires, Montevideo, Sao Paulo", "GMT-02:00, Brazil, United Kingdom", "GMT-01:00, Cape Verde, Denmark, Greenland, Portugal", "GMT-00:00, Accra, Casablanca, Dakar, Dublin, Lisbon, London", "GMT+01:00, Berlin, Lagos, Madrid, Paris, Rome, Tunis, Vienna, Warsaw", "GMT+02:00, Athens, Bucharest, Cairo, Helsinki, Jerusalem, Johannesburg, Kiev", "GMT+03:00, Istanbul, Moscow, Nairobi, Baghdad, Doha, Khartoum, Minsk, Riyadh", "GMT+04:00, Baku, Dubai, Samara, Muscat", "GMT+05:00, Karachi, Tashkent, Yekaterinburg", "GMT+06:00, Almaty, Dhaka, Omsk", "GMT+07:00, Jakarta, Bangkok, Novosibirsk, Hanoi", "GMT+08:00, Beijing, Taipei, Perth, Manila, Denpasar, Irkutsk", "GMT+09:00, Seoul,Tokyo, Ambon, Yakutsk", "GMT+10:00, Port Moresby, Sydney, Vladivostok", "GMT+11:00, Noumea", "GMT+12:00, Auckland, Suva" );
     private MainController mainController;
@@ -109,6 +112,7 @@ public class TimeZoneMapController implements Initializable {
         stage.show();
         return loader.getController();
     }
+
     private URL getResource(String name) {
         return getClass().getResource( name );
     }
@@ -135,10 +139,10 @@ public class TimeZoneMapController implements Initializable {
         }
     }
     @FXML
-    public void openQuestionDialog(String value, String[] array){
+    private void openQuestionDialog(String value, String[] array){
         Stage stage = new Stage( );
         Pane paneForCombobox = new Pane();
-        stage.setScene( new Scene(paneForCombobox , 260, 150 ) );
+        stage.setScene( new Scene(paneForCombobox, 260, 150 ) );
         stage.setTitle( "Select Time Zone" );
         Label zoneLabel = new Label(  );
         zoneLabel.setLayoutX( 5 );
@@ -147,12 +151,12 @@ public class TimeZoneMapController implements Initializable {
         label.setText("Please specify your choice :");
         label.setLayoutX( 5 );
         label.setLayoutY( 10 );
-        label.setFont( new Font(18) );
+        label.setFont( new Font( 18 ) );
         label.autosize();
         ComboBox comboBox = new ComboBox(  );
-        comboBox.setPrefWidth(150);
-        comboBox.setPrefHeight( 25);
-        comboBox.setLayoutY( 70); comboBox.setLayoutX( 25 );
+        comboBox.setPrefWidth( 150 );
+        comboBox.setPrefHeight( 25 );
+        comboBox.setLayoutY( 70 ); comboBox.setLayoutX( 25 );
         comboBox.getItems().addAll(array);
         Button buttonOk = new Button(  );
         buttonOk.setText( "OK" );

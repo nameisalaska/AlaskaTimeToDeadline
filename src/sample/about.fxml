@@ -6,7 +6,7 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="256.0" prefWidth="488.0" xmlns="http://javafx.com/javafx/8.0.72" xmlns:fx="http://javafx.com/fxml/1">
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="256.0" prefWidth="488.0" xmlns="http://javafx.com/javafx/8.0.112-ea" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <ImageView fitHeight="183.0" fitWidth="177.0" layoutX="297.0" layoutY="59.0">
          <image>
@@ -18,7 +18,7 @@
             <Font size="36.0" />
          </font>
       </Label>
-      <Label layoutX="115.0" layoutY="82.0" text="created by Kate Varyeva">
+      <Label layoutX="97.0" layoutY="82.0" text="created by Alaska Varyeva">
          <font>
             <Font size="18.0" />
          </font>
