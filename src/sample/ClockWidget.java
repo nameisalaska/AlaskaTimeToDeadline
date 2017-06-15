@@ -22,23 +22,21 @@ import java.util.TimeZone;
 
 public class ClockWidget   {
 
-    static UpdatingThread threadforUpdate;
-    public ArrayList<TimeZone> zones = new ArrayList<>();      // Array of selected Time Zones;
-    public ArrayList<Label> clocks = new ArrayList<>();       // Array of clocks;
-    @FXML
-    public Pane pane;
-    public Stage stage;
-    public int clockX = 7 ;
-    public Date deadlineDate;
     private final int NUMBEROFLABEL = 7; // number of deadlineLabel;
-    private final int INDENTATION = 200; // Indentation between labels;
+    private final int INDENTATION = 200; // Indentation between labelsForClocksName;
+    private final int SMALLSHIFT = 2;
+    private static UpdatingThread threadforUpdate;
+    private ArrayList<TimeZone> zones = new ArrayList<>();      // Array of selected Time Zones;
+    private ArrayList<Label> clocks = new ArrayList<>();       // Array of clocks;
+    @FXML
+    private Pane pane = new Pane(  );
+    private Stage stage = new Stage( );
+    private int clockX = 7 ; //Coordinates for clocks and labelsForClocksName for names of the clocks;
+    public Date deadlineDate;
+    private ArrayList<Label> labelsForClocksName = new ArrayList<>();// Array of names for clocks;
+    private ArrayList<String> labelsName = new ArrayList<>(); // Array of names for labels of labelsForClocksName;
+    private ArrayList<Label> deadlineLabels = new ArrayList<>(); // Array of labels for Deadline time;
 
-    //Coordinates for clocks and labels for names of the clocks;
-    public int labelX;
-
-    private ArrayList<Label> labels = new ArrayList<>();      // Array of names of clocks;
-    private ArrayList<String> labelsName = new ArrayList<>(); // Array of names for labels;
-    private ArrayList<Label> deadlineLabels = new ArrayList<>();
     public void start() {
         stage.setScene(new Scene(pane,clocks.size() * 200,160));
         stage.getIcons().add( new Image( getResource( "mainIcon.png" ).toExternalForm() ) );
@@ -47,6 +45,7 @@ public class ClockWidget   {
         stage.show();
         updateTheClock();
     }
+
     private URL getResource(String name) {
         return getClass().getResource( name );
     }
@@ -57,7 +56,7 @@ public class ClockWidget   {
         stage.toFront();
     }
 
-    public void updateTheClock() {
+    private void updateTheClock() {
         threadforUpdate = new UpdatingThread();
         threadforUpdate.start();
     }
@@ -67,18 +66,19 @@ public class ClockWidget   {
         Label clocklabel = new Label(); Label label = new Label();
         Tooltip.install(label, new Tooltip(nameOfZone));
         clocks.add( new MyLabel( 284, 112, clockX, 15, 42 ).createLabel( clocklabel, value ) );
-        labels.add( new MyLabel( 284, 25, clockX + 2, 14, 13 ).createLabel( label, value ) );
+        labelsForClocksName.add( new MyLabel( 284, 25, clockX + SMALLSHIFT, 14, 13 ).createLabel( label, value ) );
         if(deadlineLabels.size() <= NUMBEROFLABEL){
             Label deadlineLabel = new Label();
-            deadlineLabels.add( new MyLabel( 160, 25, labelX - 75, 92, 13 ).createLabel(deadlineLabel, "" ));
+            deadlineLabels.add( new MyLabel( 160, 25, clockX - SMALLSHIFT, 92, 13 ).createLabel(deadlineLabel, "" ));
             pane.getChildren().addAll( deadlineLabel );
         }
         labelsName.add(value);
         pane.getChildren().addAll(  clocklabel, label);
         showDeadLineTime();
-        clockX += INDENTATION; labelX += INDENTATION;
+        clockX += INDENTATION;
         stage.setWidth( clocks.size() * INDENTATION);
     }
+
     public void cleanTimeToDeadline() {
        for (int i = 0; i <  deadlineLabels.size(); i++) {
             deadlineLabels.get( i ).setText("");
@@ -96,22 +96,24 @@ public class ClockWidget   {
     }
 
     public void deleteTimeZone(String value){
-        pane.getChildren().removeAll(clocks.get(clocks.size()-1), labels.get(labels.size()-1));
+        pane.getChildren().removeAll(clocks.get(clocks.size()-1), labelsForClocksName.get( labelsForClocksName.size()-1));
         zones.remove( TimeZone.getTimeZone(value));
         clocks.remove(clocks.size() - 1);
-        labels.remove(labels.size() - 1);
+        labelsForClocksName.remove( labelsForClocksName.size() - 1);
         deadlineLabels.remove(deadlineLabels.size() - 1).setText( "" );
         labelsName.remove(value);
         renameLabels();
         showDeadLineTime();
-        clockX -= INDENTATION; labelX -= INDENTATION; //use in method 'addTimeZone'
+        clockX -= INDENTATION;  //use in method 'addTimeZone'
         stage.setWidth( clocks.size() * INDENTATION );
     }
-    public void renameLabels(){
-        for(int i = 0; i < labels.size(); i++){
-            labels.get(i).setText( labelsName.get(i));
+
+    private void renameLabels(){
+        for(int i = 0; i < labelsForClocksName.size(); i++){
+            labelsForClocksName.get(i).setText( labelsName.get(i));
         }
     }
+
     public void refreshTime(TimeZone value, Label label) {
         Calendar calendar  = Calendar.getInstance(value);
         int hour = calendar.get(Calendar.HOUR_OF_DAY);
