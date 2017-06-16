@@ -160,12 +160,7 @@ public class TimeZoneMapController implements Initializable {
         comboBox.getItems().addAll(array);
         Button buttonOk = new Button(  );
         buttonOk.setText( "OK" );
-        buttonOk.addEventHandler( MouseEvent.MOUSE_CLICKED, new EventHandler<MouseEvent>() {
-            @Override
-            public void handle(MouseEvent mouseEvent) {
-                mainController.addSelectedTimeZone((String) comboBox.getValue() );
-            }
-        } );
+        buttonOk.addEventHandler( MouseEvent.MOUSE_CLICKED, mouseEvent -> mainController.addSelectedTimeZone((String) comboBox.getValue() ) );
         buttonOk.setLayoutX( 175);
         buttonOk.setLayoutY( 70 );
         paneForCombobox.getChildren().addAll( comboBox , buttonOk,label);
@@ -190,126 +185,27 @@ public class TimeZoneMapController implements Initializable {
     */
 
     private void createMouseEvents(){
-        timeZoneOnMap.get(0).addEventHandler( MouseEvent.MOUSE_CLICKED, new EventHandler<MouseEvent>() {
-                @Override
-                public void handle(MouseEvent mouseEvent) {
-                    openQuestionDialog(timeZones.get(0),unGMT9);
-                }
-            } );
-        timeZoneOnMap.get(1).addEventHandler( MouseEvent.MOUSE_CLICKED, new EventHandler<MouseEvent>() {
-            @Override
-            public void handle(MouseEvent mouseEvent) {
-                openQuestionDialog(timeZones.get(1),unGMT8);
-            }
-        } );
-        timeZoneOnMap.get(2).addEventHandler( MouseEvent.MOUSE_CLICKED, new EventHandler<MouseEvent>() {
-            @Override
-            public void handle(MouseEvent mouseEvent) {
-                openQuestionDialog(timeZones.get(2), unGMT7);
-            }
-        } );
-        timeZoneOnMap.get(3).addEventHandler( MouseEvent.MOUSE_CLICKED, new EventHandler<MouseEvent>() {
-            @Override
-            public void handle(MouseEvent mouseEvent) {
-                openQuestionDialog(timeZones.get(3),unGMT6);
-            }
-        } );
-        timeZoneOnMap.get(4).addEventHandler( MouseEvent.MOUSE_CLICKED, new EventHandler<MouseEvent>() {
-            @Override
-            public void handle(MouseEvent mouseEvent) {
-                openQuestionDialog(timeZones.get(4),unGMT5);
-            }
-        } );
-        timeZoneOnMap.get(5).addEventHandler( MouseEvent.MOUSE_CLICKED, new EventHandler<MouseEvent>() {
-            @Override
-            public void handle(MouseEvent mouseEvent) {
-                openQuestionDialog(timeZones.get(5),unGMT4);
-            }
-        } );
-        timeZoneOnMap.get(6).addEventHandler( MouseEvent.MOUSE_CLICKED, new EventHandler<MouseEvent>() {
-            @Override
-            public void handle(MouseEvent mouseEvent) {
-                openQuestionDialog(timeZones.get(6),unGMT3);
-            }
-        } ); timeZoneOnMap.get(7).addEventHandler( MouseEvent.MOUSE_CLICKED, new EventHandler<MouseEvent>() {
-            @Override
-            public void handle(MouseEvent mouseEvent) {openQuestionDialog(timeZones.get(7),unGMT2);}
-        } ); timeZoneOnMap.get(8).addEventHandler( MouseEvent.MOUSE_CLICKED, new EventHandler<MouseEvent>() {
-            @Override
-            public void handle(MouseEvent mouseEvent) {
-                openQuestionDialog(timeZones.get(8), unGMT1);
-            }
-        } ); timeZoneOnMap.get(9).addEventHandler( MouseEvent.MOUSE_CLICKED, new EventHandler<MouseEvent>() {
-            @Override
-            public void handle(MouseEvent mouseEvent) {
-                openQuestionDialog(timeZones.get(9), GMT0);
-            }
-        } ); timeZoneOnMap.get(10).addEventHandler( MouseEvent.MOUSE_CLICKED, new EventHandler<MouseEvent>() {
-            @Override
-            public void handle(MouseEvent mouseEvent) {
-                openQuestionDialog(timeZones.get(10), GMT1);
-            }
-        } ); timeZoneOnMap.get(11).addEventHandler( MouseEvent.MOUSE_CLICKED, new EventHandler<MouseEvent>() {
-            @Override
-            public void handle(MouseEvent mouseEvent) {
-                openQuestionDialog(timeZones.get(11), GMT2);
-            }
-        } ); timeZoneOnMap.get(12).addEventHandler( MouseEvent.MOUSE_CLICKED, new EventHandler<MouseEvent>() {
-            @Override
-            public void handle(MouseEvent mouseEvent) {
-                openQuestionDialog(timeZones.get(12),GMT3);
-            }
-        } );
-        timeZoneOnMap.get(13).addEventHandler( MouseEvent.MOUSE_CLICKED, new EventHandler<MouseEvent>() {
-            @Override
-            public void handle(MouseEvent mouseEvent) {
-                openQuestionDialog(timeZones.get(13),GMT4);
-            }
-        } ); timeZoneOnMap.get(14).addEventHandler( MouseEvent.MOUSE_CLICKED, new EventHandler<MouseEvent>() {
-            @Override
-            public void handle(MouseEvent mouseEvent) {
-                openQuestionDialog(timeZones.get(14),GMT5);
-            }
-        } ); timeZoneOnMap.get(15).addEventHandler( MouseEvent.MOUSE_CLICKED, new EventHandler<MouseEvent>() {
-            @Override
-            public void handle(MouseEvent mouseEvent) {
-                openQuestionDialog(timeZones.get(15),GMT6);
-            }
-        } );
-        timeZoneOnMap.get(16).addEventHandler( MouseEvent.MOUSE_CLICKED, new EventHandler<MouseEvent>() {
-            @Override
-            public void handle(MouseEvent mouseEvent) {
-                openQuestionDialog(timeZones.get(16),GMT7);
-            }
-        } );
-        timeZoneOnMap.get(17).addEventHandler( MouseEvent.MOUSE_CLICKED, new EventHandler<MouseEvent>() {
-            @Override
-            public void handle(MouseEvent mouseEvent) {
-                openQuestionDialog(timeZones.get(17), GMT8);
-            }
-        } );
-        timeZoneOnMap.get(18).addEventHandler( MouseEvent.MOUSE_CLICKED, new EventHandler<MouseEvent>() {
-            @Override
-            public void handle(MouseEvent mouseEvent) {
-                openQuestionDialog(timeZones.get(18),GMT9);
-            }
-        } );
-        timeZoneOnMap.get(19).addEventHandler( MouseEvent.MOUSE_CLICKED, new EventHandler<MouseEvent>() {
-            @Override
-            public void handle(MouseEvent mouseEvent) {
-                openQuestionDialog(timeZones.get(19),GMT10);
-            }
-        } );
-        timeZoneOnMap.get(20).addEventHandler( MouseEvent.MOUSE_CLICKED, new EventHandler<MouseEvent>() {
-            @Override
-            public void handle(MouseEvent mouseEvent) {
-                openQuestionDialog(timeZones.get(20),GMT11);
-            }
-        } ); timeZoneOnMap.get(21).addEventHandler( MouseEvent.MOUSE_CLICKED, new EventHandler<MouseEvent>() {
-            @Override
-            public void handle(MouseEvent mouseEvent) {
-                openQuestionDialog(timeZones.get(21),GMT12);
-            }
-        } );
+        timeZoneOnMap.get(0).addEventHandler( MouseEvent.MOUSE_CLICKED, mouseEvent -> openQuestionDialog(timeZones.get(0),unGMT9) );
+        timeZoneOnMap.get(1).addEventHandler( MouseEvent.MOUSE_CLICKED, mouseEvent -> openQuestionDialog(timeZones.get(1),unGMT8) );
+        timeZoneOnMap.get(2).addEventHandler( MouseEvent.MOUSE_CLICKED, mouseEvent -> openQuestionDialog(timeZones.get(2), unGMT7) );
+        timeZoneOnMap.get(3).addEventHandler( MouseEvent.MOUSE_CLICKED, mouseEvent -> openQuestionDialog(timeZones.get(3),unGMT6) );
+        timeZoneOnMap.get(4).addEventHandler( MouseEvent.MOUSE_CLICKED, mouseEvent -> openQuestionDialog(timeZones.get(4),unGMT5) );
+        timeZoneOnMap.get(5).addEventHandler( MouseEvent.MOUSE_CLICKED, mouseEvent -> openQuestionDialog(timeZones.get(5),unGMT4) );
+        timeZoneOnMap.get(6).addEventHandler( MouseEvent.MOUSE_CLICKED, mouseEvent -> openQuestionDialog(timeZones.get(6),unGMT3) );
+        timeZoneOnMap.get(7).addEventHandler( MouseEvent.MOUSE_CLICKED, mouseEvent -> openQuestionDialog(timeZones.get(7),unGMT2) );
+        timeZoneOnMap.get(8).addEventHandler( MouseEvent.MOUSE_CLICKED, mouseEvent -> openQuestionDialog(timeZones.get(8), unGMT1) );
+        timeZoneOnMap.get(9).addEventHandler( MouseEvent.MOUSE_CLICKED, mouseEvent -> openQuestionDialog(timeZones.get(9), GMT0) );
+        timeZoneOnMap.get(10).addEventHandler( MouseEvent.MOUSE_CLICKED, mouseEvent -> openQuestionDialog(timeZones.get(10), GMT1) );
+        timeZoneOnMap.get(11).addEventHandler( MouseEvent.MOUSE_CLICKED, mouseEvent -> openQuestionDialog(timeZones.get(11), GMT2) );
+        timeZoneOnMap.get(12).addEventHandler( MouseEvent.MOUSE_CLICKED, mouseEvent -> openQuestionDialog(timeZones.get(12),GMT3) );
+        timeZoneOnMap.get(13).addEventHandler( MouseEvent.MOUSE_CLICKED, mouseEvent -> openQuestionDialog(timeZones.get(13),GMT4) );
+        timeZoneOnMap.get(14).addEventHandler( MouseEvent.MOUSE_CLICKED, mouseEvent -> openQuestionDialog(timeZones.get(14),GMT5) );
+        timeZoneOnMap.get(15).addEventHandler( MouseEvent.MOUSE_CLICKED, mouseEvent -> openQuestionDialog(timeZones.get(15),GMT6) );
+        timeZoneOnMap.get(16).addEventHandler( MouseEvent.MOUSE_CLICKED, mouseEvent -> openQuestionDialog(timeZones.get(16),GMT7) );
+        timeZoneOnMap.get(17).addEventHandler( MouseEvent.MOUSE_CLICKED, mouseEvent -> openQuestionDialog(timeZones.get(17), GMT8) );
+        timeZoneOnMap.get(18).addEventHandler( MouseEvent.MOUSE_CLICKED, mouseEvent -> openQuestionDialog(timeZones.get(18),GMT9) );
+        timeZoneOnMap.get(19).addEventHandler( MouseEvent.MOUSE_CLICKED, mouseEvent -> openQuestionDialog(timeZones.get(19),GMT10) );
+        timeZoneOnMap.get(20).addEventHandler( MouseEvent.MOUSE_CLICKED, mouseEvent -> openQuestionDialog(timeZones.get(20),GMT11) );
+        timeZoneOnMap.get(21).addEventHandler( MouseEvent.MOUSE_CLICKED, mouseEvent -> openQuestionDialog(timeZones.get(21),GMT12) );
     }
 }
